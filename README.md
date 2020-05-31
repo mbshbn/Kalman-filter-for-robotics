@@ -2,7 +2,10 @@
 
 
 ## Localization
-The Measurement Update:
+It consists of the initial belief, measurement updates (sense) and motion updates.
+The probability consist the probability of the robot being in all possible places. A uniform distribution means there is less information and entropy is high which is undesirable.
+
+### The Measurement Update:
 * with a product to compute the posterior distribution form the prior distribution, and normalize the result
   ```
   def sense(p, Z):
@@ -17,7 +20,7 @@ The Measurement Update:
   ```
 * with the Bayes rule.
 
-The Motion Update.
+### The Motion Update:
 * with a convolution (=addition)
   if the motion is exact:
   ```
