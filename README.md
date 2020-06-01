@@ -44,11 +44,13 @@ With a convolution (=addition or sum_B(p(A|B) p(B)) )) and  total The probabili
           q.append(s)
       return q
   ```
-## Gaussian (1D)
+
+## Kalman Filter for 1D
+### Gaussian (1D)
 ```
-def f(mu, sigma2, x):
-    return 1/sqrt(2.*pi*sigma2) * exp(-.5*(x-mu)**2 / sigma2)
+1/sqrt(2.*pi*sigma2) * exp(-.5*(x-mu)**2 / sigma2)
 ```
+
 ### (Measurement Update) Update the belief based on prior belief and the new measurement:
 The new variance is more certain that other two.
 ```
@@ -56,7 +58,10 @@ new_mean = (var2 *mean1 + var1 * mean2)/(var1 + var2)
 new_var = 1/(1/var1+1/var2)
 ```
 ### (Prediction) Update the belief based on prior belief and the new motion:
+The new variance shows more uncertainty than the other two.
 ```
 new_mean = mean1 + mean2
 new_var = var1 + var2
 ```
+## Kalman Filter for higher dimensions
+### Multivariate Gaussian

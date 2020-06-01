@@ -24,8 +24,9 @@ measurements = [5., 6., 7., 9., 10.]
 motion = [1., 1., 2., 1., 1.]
 measurement_sig = 4.
 motion_sig = 2.
-mu = 0.
-sig = 10000.
+mu = 0. # this is a wrong belief because it is different than measurements[0]
+sig = 10000. # here we know that our mu is wrong
+# sig = 0.0000000001 # (false initial belief) here we know that our wrong mu is corrcet, and results in a worse final result
 
 for i in range(len(measurements)):
     [mu,sig] = update(mu, sig , measurements[i],measurement_sig )
