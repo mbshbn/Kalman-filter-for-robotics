@@ -6,7 +6,7 @@ It consists of the initial belief, measurement updates (sense) and motion update
 The probability consist the probability of the robot being in all possible places. A uniform distribution means there is less information and entropy is high which is undesirable.
 
 ### The Measurement Update (uses product):
-With a product and the Bayes rule (p(A|B) = p(B|A) p(A) / p(B)) to compute the posterior distribution form the prior distribution, and normalize the result. Here we assued that the robot has the map of its world, called `world`, and `Z` is the measurement.
+With a product and the Bayes rule (p(A|B) = p(B|A) p(A) / p(B)) to compute the posterior distribution form the prior distribution, and normalize the result. Here we assued that the robot has the map of its world, called `world`, and `Z` is the measurement. See `move_sense.py`
   ```
   def sense(p, Z):
       q=[]
@@ -21,7 +21,7 @@ With a product and the Bayes rule (p(A|B) = p(B|A) p(A) / p(B)) to compute the
 
 
 ### The Motion Update (prediction, uses total probability):
-With a convolution (=addition or sum_B(p(A|B) p(B)) )) and  total The probability (p(A) = sum_B(p(A|B) p(B)) )( sum_B(p(A|B) p(B)) ):
+With a convolution (=addition or sum_B(p(A|B) p(B)) )) and  total The probability (p(A) = sum_B(p(A|B) p(B)) )( sum_B(p(A|B) p(B)) ). See `move_sense.py`.
 
   if the motion is exact:
   ```
@@ -47,24 +47,25 @@ With a convolution (=addition or sum_B(p(A|B) p(B)) )) and  total The probabili
 
 ## Kalman Filter for 1D
 ### Gaussian (1D)
+See `unimodal_gaussian.py`
 ```
 1/sqrt(2.*pi*sigma2) * exp(-.5*(x-mu)**2 / sigma2)
 ```
 
 ### (Measurement Update) Update the belief based on prior belief and the new measurement:
-The new variance is more certain that other two.
+The new variance is more certain that other two. See `update_predict.py`.
 ```
 new_mean = (var2 *mean1 + var1 * mean2)/(var1 + var2)
 new_var = 1/(1/var1+1/var2)
 ```
 ### (Prediction) Update the belief based on prior belief and the new motion:
-The new variance shows more uncertainty than the other two.
+The new variance shows more uncertainty than the other two. See `update_predict.py`.
 ```
 new_mean = mean1 + mean2
 new_var = var1 + var2
 ```
 ## Kalman Filter for higher dimensions
-It is based on the Multivariate Gaussian:
+It is based on the Multivariate Gaussian. See `Kalman_prediction.py`.
 ```
 # measurement update
 y = Z - (H * x)
