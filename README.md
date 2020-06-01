@@ -49,9 +49,13 @@ With a convolution (=addition or sum_B(p(A|B) p(B)) )) and  total The probabili
 def f(mu, sigma2, x):
     return 1/sqrt(2.*pi*sigma2) * exp(-.5*(x-mu)**2 / sigma2)
 ```
-### update the belief based on prior belief and the new measurement:
+### (Measurement Update) Update the belief based on prior belief and the new measurement:
 The new variance is more certain that other two.
 ```
 new_mean = (var2 *mean1 + var1 * mean2)/(var1 + var2)
 new_var = 1/(1/var1+1/var2)
+```
+### (Prediction) Update the belief based on prior belief and the new motion:
+```
+
 ```
