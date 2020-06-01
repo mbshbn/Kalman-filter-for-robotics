@@ -64,4 +64,17 @@ new_mean = mean1 + mean2
 new_var = var1 + var2
 ```
 ## Kalman Filter for higher dimensions
-### Multivariate Gaussian
+It is based on the Multivariate Gaussian:
+```
+# measurement update
+y = Z - (H * x)
+S = H * P * H.transpose() + R
+K = P * H.transpose() * S.inverse()
+x = x + (K * y)
+
+P = (I-(K * H)) * P
+
+# prediction (motion update)
+x = (F * x) + u
+P = F * P * F.transpose()
+```
