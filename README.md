@@ -57,5 +57,6 @@ new_var = 1/(1/var1+1/var2)
 ```
 ### (Prediction) Update the belief based on prior belief and the new motion:
 ```
-
+new_mean = mean1 + mean2
+new_var = var1 + var2
 ```
