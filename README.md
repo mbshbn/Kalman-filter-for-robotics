@@ -6,7 +6,7 @@ It consists of the initial belief, measurement updates (sense) and motion update
 The probability consist the probability of the robot being in all possible places. A uniform distribution means there is less information and entropy is high which is undesirable.
 
 ### The Measurement Update:
-* with a product to compute the posterior distribution form the prior distribution, and normalize the result
+With a product and the Bayes rule (p(A|B) = p(B|A) p(A) / p(B)) to compute the posterior distribution form the prior distribution, and normalize the result. Here we assued that the robot has the map of its world, called `world`, and `Z` is the measurement.
   ```
   def sense(p, Z):
       q=[]
@@ -18,10 +18,11 @@ The probability consist the probability of the robot being in all possible place
           q[i] = q[i] / s
       return q
   ```
-* with the Bayes rule.
+
 
 ### The Motion Update:
-* with a convolution (=addition)
+With a convolution (=addition or sum_B(p(A|B) p(B)) )) and  total The probability (p(A) = sum_B(p(A|B) p(B)) )( sum_B(p(A|B) p(B)) ):
+
   if the motion is exact:
   ```
 
@@ -43,4 +44,3 @@ The probability consist the probability of the robot being in all possible place
           q.append(s)
       return q
   ```
-* with a total probability.
