@@ -3,10 +3,10 @@
 
 ## Localization
 It consists of the initial belief, measurement updates (sense) and motion updates.
-The probability consist the probability of the robot being in all possible places. A uniform distribution means there is less information and entropy is high which is undesirable.
+The probability consists of the probability of the robot being in all possible places. A uniform distribution means there is less information and entropy is high which is undesirable.
 
 ### The Measurement Update (uses product):
-With a product and the Bayes rule (p(A|B) = p(B|A) p(A) / p(B)) to compute the posterior distribution form the prior distribution, and normalize the result. Here we assued that the robot has the map of its world, called `world`, and `Z` is the measurement. See `move_sense.py`
+With a product and the Bayes rule (p(A|B) = p(B|A) p(A) / p(B)) to compute the posterior distribution form the prior distribution, and normalize the result. Here we assume that the robot has the map of its world, called `world`, and `Z` is the measurement. See `move_sense.py`
   ```
   def sense(p, Z):
       q=[]
@@ -33,7 +33,7 @@ With a convolution (=addition or sum_B(p(A|B) p(B)) )) and  total The probabili
           q.append(p[(i-U)%len(p)])
       return q
   ```
-  However, in reality it is not possible. For the inexact motion, we have
+  However, in reality, it is not possible. For the inexact motion, we have
   ```
   def move(p,pExact,pOvershoot,pUndershoot,U):
       q=[]
@@ -53,7 +53,7 @@ See `unimodal_gaussian.py`
 ```
 
 ### (Measurement Update) Update the belief based on prior belief and the new measurement:
-The new variance is more certain that other two. See `update_predict.py`.
+The new variance is more certain than the other two. See `update_predict.py`.
 ```
 new_mean = (var2 *mean1 + var1 * mean2)/(var1 + var2)
 new_var = 1/(1/var1+1/var2)
@@ -79,3 +79,6 @@ P = (I-(K * H)) * P
 x = (F * x) + u
 P = F * P * F.transpose()
 ```
+
+
+This repo is based on the [Udacity Self-driving car engineering Nanodegree](https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd013) course.
